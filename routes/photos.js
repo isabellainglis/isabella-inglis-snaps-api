@@ -15,4 +15,11 @@ router.get("/:id", (req, res) => {
   res.status(200).json(selectedPhoto);
 });
 
+router.get("/:id/comments", (req, res) => {
+  const photos = readPhotos();
+
+  const selectedPhoto = photos.find((photo) => photo.id === req.params.id);
+  res.status(200).json(selectedPhoto.comments);
+});
+
 export default router;
