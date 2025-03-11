@@ -23,4 +23,13 @@ const writeComment = (comment, photoId) => {
   }
 };
 
-export { readPhotos, writeComment };
+const readTags = () => {
+  try {
+    const tags = fs.readFileSync("./data/tags.json", "utf8");
+    return JSON.parse(tags);
+  } catch (error) {
+    console.log("Error fetching tags:", error);
+  }
+};
+
+export { readPhotos, writeComment, readTags };

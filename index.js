@@ -1,5 +1,6 @@
 import express from "express";
 import photosRoutes from "./routes/photos.js";
+import tagsRoutes from "./routes/tags.js";
 const app = express();
 const port = 5050;
 import cors from "cors";
@@ -13,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/photos", photosRoutes);
+app.use("/tags", tagsRoutes);
 
 app.listen(port, () => {
   console.log(`Listening on port ${port}`);
