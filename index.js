@@ -1,11 +1,12 @@
 import express from "express";
 import photosRoutes from "./routes/photos.js";
-import { readPhotos } from "./utils/helpers.js";
-import fs from "fs";
 const app = express();
 const port = 5050;
+import cors from "cors";
 
 app.use(express.json());
+app.use(cors());
+app.use(express.static("public"));
 
 app.get("/", (req, res) => {
   res.send("Hello");
