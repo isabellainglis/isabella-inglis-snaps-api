@@ -9,4 +9,18 @@ const readPhotos = () => {
   }
 };
 
-export { readPhotos };
+const writeComment = (comment, photoId) => {
+  try {
+    const photosArr = readPhotos();
+
+    const selectedPhoto = photosArr.find((photo) => photo.id === photoId);
+
+    selectedPhoto.comments.push(comment);
+
+    fs.writeFileSync("./data/photos.json", JSON.stringify(photosArr));
+  } catch (error) {
+    console.log("Error adding comment:", error);
+  }
+};
+
+export { readPhotos, writeComment };

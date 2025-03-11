@@ -5,6 +5,8 @@ import fs from "fs";
 const app = express();
 const port = 5050;
 
+app.use(express.json());
+
 app.get("/", (req, res) => {
   res.send("Hello");
 });
