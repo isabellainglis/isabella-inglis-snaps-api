@@ -3,10 +3,14 @@ import { readTags } from "../utils/helpers.js";
 
 const router = express.Router();
 
-router.get("/", (req, res) => {
-  const tags = readTags();
+router.get("/", (_req, res) => {
+  try {
+    const tags = readTags();
 
-  res.status(200).json(tags);
+    res.json(tags);
+  } catch (error) {
+    res.status(500).send(error);
+  }
 });
 
 export default router;

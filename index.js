@@ -1,21 +1,19 @@
 import express from "express";
+import "dotenv/config";
 import photosRoutes from "./routes/photos.js";
 import tagsRoutes from "./routes/tags.js";
-const app = express();
-const port = 5050;
 import cors from "cors";
 
-app.use(express.json());
-app.use(cors());
-app.use(express.static("public"));
+const app = express();
+const PORT = process.env.PORT || 5050;
 
-app.get("/", (req, res) => {
-  res.send("Hello");
-});
+app.use(express.json());
+app.use(cors({ origin: process.env.FRONTEND_BASE_URL }));
+app.use(express.static("public"));
 
 app.use("/photos", photosRoutes);
 app.use("/tags", tagsRoutes);
 
-app.listen(port, () => {
-  console.log(`Listening on port ${port}`);
+app.listen(PORT, () => {
+  console.log(`Listening on port ${PORT}`);
 });
